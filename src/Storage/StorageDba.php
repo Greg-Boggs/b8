@@ -1,6 +1,6 @@
 <?php
 
-namespace B8;
+namespace B8\Storage;
 
 
 #   Copyright (C) 2006-2012 Tobias Leupold <tobias.leupold@web.de>

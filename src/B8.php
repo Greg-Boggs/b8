@@ -29,8 +29,11 @@ namespace B8;
  * @author Oliver Lillie (original PHP 5 port)
  */
 
-use B8\Degenerator;
-use B8\Lexer;
+use B8\Storage\StorageDba;
+use B8\Storage\StoragePostgressql;
+use B8\Storage\StorageMysqli;
+use B8\Degenerator\Degenerator;
+use B8\Lexer\Lexer;
 use Exception;
 
 class B8
@@ -113,8 +116,18 @@ class B8
 		$this->lexer = new Lexer($config_lexer);
 		
 		# Setup the storage backend
-		$class = 'Storage' . ucfirst($this->config['storage']);
-		$this->storage = new $class($config_storage, $this->degenerator);
+		switch($this->config['storage']) {
+
+			case 'mysqli':
+				$this->storage = new StorageMysqli($config_storage, $this->degenerator);
+				break;
+			case 'dba':
+				$this->storage = new StorageDba($config_storage, $this->degenerator);
+				break;
+			case 'postgressql':
+				$this->storage = new StoragePostgressql($config_storage, $this->degenerator);
+		}
+
 	}
 
 	/**

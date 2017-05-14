@@ -1,6 +1,6 @@
 <?php
 
-namespace B8;
+namespace B8\Storage;
 
 #   Copyright (C) 2010-2012 Tobias Leupold <tobias.leupold@web.de>
 #
@@ -28,6 +28,8 @@ namespace B8;
  * @package b8
  * @author Tobias Leupold
  */
+
+use B8\B8;
 
 abstract class StorageBase
 {
